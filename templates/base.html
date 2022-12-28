@@ -1,0 +1,44 @@
+{% load static %}
+
+
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Movfix - Online Movies & TV Shows Template</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+		<link rel="shortcut icon" type="image/x-icon" href="{% static 'img/favicon.png' %}">
+        <!-- Place favicon.ico in the root directory -->
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        
+		<!-- CSS here -->
+        <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+        <link rel="stylesheet" href="{% static 'css/animate.min.css' %}">
+        <link rel="stylesheet" href="{% static 'css/magnific-popup.css' %}">
+        <link rel="stylesheet" href="{% static 'css/fontawesome-all.min.css' %}">
+        <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}">
+        <link rel="stylesheet" href="{% static 'css/flaticon.css' %}">
+        <link rel="stylesheet" href="{% static 'css/odometer.css' %}">
+        <link rel="stylesheet" href="{% static 'css/aos.css' %}">
+        <link rel="stylesheet" href="{% static 'css/slick.css' %}">
+        <link rel="stylesheet" href="{% static 'css/default.css' %}">
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+        <link rel="stylesheet" href="{% static 'css/responsive.css' %}">
+        
+    </head>
+    
+<body>
+
+    <!-- LOAD NAVBAR HERE -->
+    {% include 'includes/navbar.html' %}
+
+    <!-- LOAD CONTENT HERE -->
+    {% block content %}
+        <!-- CONTENT GOES HERE -->
+    {% endblock %}
+
+    <!-- LOAD FOOTER HERE -->
+    {% include 'includes/footer.html' %}
