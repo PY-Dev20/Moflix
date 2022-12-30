@@ -33,12 +33,7 @@
                                         <li class="active menu-item-has-children"><a href="{% url 'home'%}">Home</a>
                                             
                                         </li>
-                                        <li class="menu-item-has-children"><a href="#">Movie</a>
-                                            <ul class="submenu">
-                                                <li><a href="{% url 'store'%}">Movie</a></li>
-                                               
-                                            </ul>
-                                        </li>
+                                        <li class="menu-item-has-children"><a href="{% url 'store'%}">Movie</a></li>
                                         <li><a href="tv-show.html">tv show</a></li>
                                         <li><a href="pricing.html">Pricing</a></li>
                                         <li class="menu-item-has-children"><a href="#">blog</a>
@@ -51,8 +46,20 @@
                                     </ul>
                                 </div>
                                 <div class="header-action d-none d-md-block">
+                                   
                                     <ul>
-                                        <li class="header-search"><a href="#" data-toggle="modal" data-target="#search-modal"><i class="fas fa-search"></i></a></li>
+                                        <form class="form-inline" action="{% url 'search' %}" method="GET">
+                                            <div class="form-group">
+                                              <div class="input-group">
+                                                <input type="text" class="form-control" name="keyword" placeholder="Search">
+                                                <div class="input-group-append">
+                                                  <button class="btn btn-secondary " style="padding: 0;" type="submit">
+                                                    <i class="fa fa-search"></i>
+                                                  </button>
+                                                </div>
+                                              </div>
+                                            </div>
+                                          </form>
                                         <li class="header-lang">
                                             <form action="#">
                                                 <div class="icon"><i class="flaticon-globe"></i></div>
@@ -64,9 +71,18 @@
                                                 </select>
                                             </form>
                                         </li>
-                                        <li class="header-btn"><a href="#" class="btn">Sign In</a></li>
+                                        <li ><a href="{% url 'cart' %}" ><i class="fas fa-shopping-cart fa-lg rounded-circle large-border   "></i></a>
+                                            <span class="badge badge-pill badge-danger notify">{{cart_count}}</span>                                       
+                                        </li>
+                                            <li>
+                                              <a href="">Sign in</a> <span class="dark-transp"> | </span>
+                                              <a href=""> Register</a>
+                                            </li>
+                                        
+                                        
                                     </ul>
                                 </div>
+                           
                             </nav>
                         </div>
 

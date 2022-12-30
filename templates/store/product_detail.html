@@ -20,6 +20,24 @@
                             <div class="movie-details-content">
                                 <h5>{{ single_product.product_name }}</h5>
                                 <h2>The Easy <span>Reach</span></h2>
+                                <div class="item-option-select col-xl-6 col-lg-12">
+									<h6>Choose Color</h6>
+									<select name="color" class="form-control" required>
+										<option value="" disabled selected>Select</option>
+										{% for i in single_product.variation_set.colors %}
+										<option value="{{ i.variation_value | lower }}">{{ i.variation_value | capfirst }}</option>
+										{% endfor %}
+									</select>
+								</div>
+                                <div class="item-option-select col-xl-6 col-lg-12">
+									<h6>Select Size</h6>
+									<select name="size" class="form-control" required>
+										<option value="" disabled selected>Select</option>
+										{% for i in single_product.variation_set.sizes %}
+										<option value="{{ i.variation_value | lower }}">{{ i.variation_value | capfirst }}</option>
+										{% endfor %}
+									</select>
+								</div>
                                 <div class="banner-meta">
                                     <ul>
                                         <li class="quality">
@@ -27,7 +45,7 @@
                                             <span>hd</span>
                                         </li>
                                         <li class="category">
-                                            <a href="#">{{ single_product.category  }}</a>
+                                            <a href="{{ single_product.category.get_url }}">{{ single_product.category  }}</a>
                                             
                                         </li>
                                         <li class="release-time">
@@ -37,28 +55,41 @@
                                     </ul>
                                 </div>
                                 <p>{{ single_product.description }}</p>
-                                <div class="movie-details-prime">
+                                
+                                <div class="movie-details-prime mr-auto ml-3 ">
                                     <ul>
                                         <li class="share"><a href="#"><i class="fas fa-share-alt"></i> Share</a></li>
-                                        <li class="streaming">
+                                        
+                                        {% if single_product.stock <= 0 %}
+                                    
+                                        <span class="btn fa fa-times-circle text-danger  btn-block"> Out of Stock </span>
+                                        {% else %}
+                                        {% if in_cart %}
+                                            <!--add to cart-->
+                                         <li class="watch"><a href="" class="btn btn-block bg-success"><i class="fa fa-check"></i> Added to Cart </a></li>
+                                         <li class="watch"><a href="{% url 'cart'%}" class="btn btn-block "><i class="fa fa-eye"></i> View Cart </a></li>
+
+                                         {% else %}
+                                         <li class="streaming">
                                             <h6>Prime Video</h6>
                                             <span>Streaming Channels</span>
                                         </li>
-                                        {% if single_product.stock <= 0 %}
-                                    
-                                        <span class="btn fa fa-times-circle text-danger"> Out of Stock </span>
-                                        {% else %}
-                                        <li class="watch"><a href="#" class="btn "><i class="fa fa-shopping-cart"></i> Add to Cart </a></li>
+                                        <li class="watch"><a href="{% url 'add_cart' single_product.id %}" class="btn btn-block "><i class="fa fa-shopping-cart"></i> Add to Cart </a></li>
+                                         {%endif%}
                                         {%endif%}   
                                     </ul>
                                 </div>
                             </div>
                         </div>
+                        
+					
                         <div class="movie-details-btn">
                             <a href="{% static 'img/poster/movie_details_img.jpg' %}" class="download-btn" download="">Download <img src="{% static 'fonts/download.svg' %}" alt=""></a>
                         </div>
                     </div>
                 </div>
+                <hr>
+                
             </section>
             <!-- movie-details-area-end -->
 

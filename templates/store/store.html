@@ -6,7 +6,7 @@
 <main>
 
     <!-- breadcrumb-area -->
-    <section class="breadcrumb-area breadcrumb-bg" data-background="{% static 'img/bg/breadcrumb_bg.jpg' %}">
+    <section class="breadcrumb-area breadcrumb-bg" data-background="{% static 'img/bg/movie_details_bg.jpg' %}">
         <div class="container">
             <div class="row">
                 <div class="col-12">
@@ -83,12 +83,10 @@
                                     <i class="fas fa-star"></i>
                                 </li>
                                
-                                <li><a href="{{ product.get_url}}" class="btn fa fa-info-circle">Details</a></li>
-                                {% if single_product.stock <= 0 %}
-                                <h5>Out of Stock</h5>
-                               {% else %}
-                                <li><a href="" class="btn fa fa-shopping-cart"> Add to Cart </a></li>
-                                {% endif %}
+                                <li><a href="{{ product.get_url}}" class="btn fa fa-info-circle btn-block"> View Details</a></li>
+                               
+                                
+                                
                             </ul>
                         </div>
                         <div class="movie-content">
@@ -121,13 +119,29 @@
                 <div class="col-12">
                     <div class="pagination-wrap mt-30">
                         <nav>
-                            <ul>
-                                <li class="active"><a href="#">1</a></li>
-                                <li><a href="#">2</a></li>
-                                <li><a href="#">3</a></li>
-                                <li><a href="#">4</a></li>
-                                <li><a href="#">Next</a></li>
-                            </ul>
+                            {% if products.has_other_pages %}
+	  <ul>
+			{% if products.has_previous %}
+	    <li ><a class="page-link" href="?page={{products.previous_page_number}}">Previous</a></li>
+			{% else %}
+			<li ><a class="page-link" href="#">Previous</a></li>
+			{% endif %}
+
+			{% for i in products.paginator.page_range %}
+				{% if products.number == i %}
+	    		<li class="active"><a class="page-link" href="#">{{i}}</a></li>
+				{% else %}
+					<li ><a class="page-link" href="?page={{i}}">{{i}}</a></li>
+				{% endif %}
+	    {% endfor %}
+
+			{% if products.has_next %}
+	    	<li ><a class="page-link" href="?page={{products.next_page_number}}">Next</a></li>
+			{% else %}
+				<li ><a class="page-link" href="#">Next</a></li>
+			{% endif %}
+	  </ul>
+	{% endif %}
                         </nav>
                     </div>
                 </div>
